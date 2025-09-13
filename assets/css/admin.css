@@ -1,0 +1,112 @@
+/* Admin styles for Blitz Dock */
+
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/inter/Inter-Variable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+.toplevel_page_blitz-dock #wpcontent {
+    padding-left: 0;
+}
+
+.toplevel_page_blitz-dock #wpbody-content {
+    padding-left: 0;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-wrap {
+    display: flex;
+    align-items: stretch;
+    min-height: calc(100vh - 32px);
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.toplevel_page_blitz-dock .blitz-dock-sidebar {
+    width: 280px;
+    box-sizing: border-box;
+    border: 1px solid #3f37394d;
+    background: #fff;
+    position: sticky;
+    top: 32px;
+    min-height: calc(100vh - 32px);
+}
+
+
+.toplevel_page_blitz-dock .blitz-dock-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-nav a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-nav a:hover {
+    background: #f0f0f1;
+}
+
+/* A11y: strong, theme-aware focus ring (works in light/dark schemes) */
+.toplevel_page_blitz-dock a:focus-visible,
+.toplevel_page_blitz-dock button:focus-visible,
+.toplevel_page_blitz-dock [role="tab"]:focus-visible,
+.toplevel_page_blitz-dock [tabindex]:focus-visible {
+    outline: 2px solid var(--wp-admin-theme-color, #2271b1);
+    outline-offset: 2px;
+}
+
+/* Safari fallback */
+.toplevel_page_blitz-dock a:focus,
+.toplevel_page_blitz-dock button:focus,
+.toplevel_page_blitz-dock [role="tab"]:focus,
+.toplevel_page_blitz-dock [tabindex]:focus {
+    outline: 2px solid var(--wp-admin-theme-color, #2271b1);
+    outline-offset: 2px;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-nav a.active,
+.toplevel_page_blitz-dock .blitz-dock-nav a[aria-current="page"] {
+    font-weight: 600;
+    border-left: 4px solid #2271b1;
+    padding-left: 8px;
+    background: #f0f0f1;
+}
+
+/* Admin nav: icon + text alignment (scoped to Blitz Dock) */
+.toplevel_page_blitz-dock .blitz-dock-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;            /* space between icon and label */
+}
+
+/* Icon wrapper: consistent 18px box, doesn’t affect line-height */
+.toplevel_page_blitz-dock .blitz-dock-icon {
+  inline-size: 18px;
+  block-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 8px;
+  line-height: 0;      /* avoid extra baseline space */
+}
+
+/* Force icon SVG to 18px and outline look */
+.toplevel_page_blitz-dock .blitz-dock-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Outline guarantee: prevent filled shapes; inherit link color */
+.toplevel_page_blitz-dock .blitz-dock-icon,
+.toplevel_page_blitz-dock .blitz-dock-icon * {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
