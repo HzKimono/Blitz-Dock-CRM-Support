@@ -26,7 +26,11 @@ if ( ! defined( 'ABSPATH' ) ) {
            role="dialog"
            aria-modal="true"
            aria-labelledby="blitz-dock-title"
+           aria-describedby="blitz-dock-desc"
            hidden>
+    <p id="blitz-dock-desc" class="blitz-dock-visually-hidden">
+      <?php echo esc_html__( 'Customer support panel. Use Tab to navigate. Press Escape to close.', 'blitz-dock' ); ?>
+    </p>
     <header class="blitz-dock__header">
       <h2 id="blitz-dock-title" class="blitz-dock__title">
         <?php echo esc_html__( 'Blitz Dock CRM Support', 'blitz-dock' ); ?>

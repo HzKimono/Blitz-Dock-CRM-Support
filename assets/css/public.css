@@ -7,6 +7,9 @@
   --bd-panel-width: 380px;
   --bd-panel-height: 600px;
   --bd-header-size: 60px; /* header height */
+  --bd-z-root: 9999;
+  --bd-z-overlay: 9998;
+  --bd-z-bubble: 10000;
 
   position: fixed;
   inset-block-end: var(--bd-space-4);
@@ -15,7 +18,7 @@
   flex-direction: column;
   align-items: flex-end;
   inline-size: min(var(--bd-panel-width), 95vw);
-  z-index: 9999;
+  z-index: var(--bd-z-root);
 }
 
 .blitz-dock--hidden { display: none; }
@@ -65,7 +68,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.4);
-  z-index: 9998; /* explicit layering */
+  z-index: var(--bd-z-overlay); /* explicit layering */
 }
 
 /* Panel */
@@ -78,7 +81,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  z-index: 9999;
+  z-index: var(--bd-z-root);
 }
 
 /* Header */
@@ -149,7 +152,19 @@ body.blitz-dock-scroll-lock { overflow: hidden; }
 .blitz-dock [hidden] { display: none !important; }
 
 /* Bubble on top */
-.blitz-dock__bubble { z-index: 10000; }
+.blitz-dock__bubble { z-index: var(--bd-z-bubble); }
+
+.blitz-dock-visually-hidden {
+  position: absolute !important;
+  block-size: 1px !important;
+  inline-size: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {

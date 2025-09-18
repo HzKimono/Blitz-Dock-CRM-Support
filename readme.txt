@@ -41,5 +41,6 @@ Deleting the plugin from the Plugins screen removes the `blitz_dock_options` opt
 
 == Credits ==
 Inter font © The Inter Project, licensed under SIL Open Font License 1.1 (bundled as assets/fonts/inter/Inter-Variable.woff2; license at assets/fonts/inter/OFL.txt).
+See licenses/THIRD-PARTY.md for a complete list of bundled third-party licenses.
 
 <!-- TODO: Replace placeholder "Contributors: codex" with real WordPress.org usernames before submission. -->

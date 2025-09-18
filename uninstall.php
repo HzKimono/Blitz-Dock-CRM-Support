@@ -17,6 +17,10 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * @return void
  */
 function blitz_dock_delete_options() {
+    /**
+     * Register any additional option keys that should be deleted on uninstall.
+     * Extend this list as new settings are introduced.
+     */
     $keys = array(
         'blitz_dock_options',
     );

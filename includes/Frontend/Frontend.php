@@ -79,7 +79,13 @@ class Frontend {
             true
         );
 
-        \wp_script_add_data( 'blitz-dock-public', 'defer', true );
+        \wp_script_add_data( 'blitz-dock-public', 'strategy', 'defer' );
+
+        \wp_set_script_translations(
+            'blitz-dock-public',
+            'blitz-dock',
+            \plugin_dir_path( BLITZ_DOCK_FILE ) . 'languages'
+        );
     }
 
     /**
