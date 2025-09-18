@@ -1,0 +1,164 @@
+.blitz-dock {
+  --bd-space-1: 4px;
+  --bd-space-2: 8px;
+  --bd-space-3: 12px;
+  --bd-space-4: 16px;
+  --bd-space-6: 24px;
+  --bd-panel-width: 380px;
+  --bd-panel-height: 600px;
+  --bd-header-size: 60px; /* header height */
+
+  position: fixed;
+  inset-block-end: var(--bd-space-4);
+  inset-inline-end: var(--bd-space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  inline-size: min(var(--bd-panel-width), 95vw);
+  z-index: 9999;
+}
+
+.blitz-dock--hidden { display: none; }
+.blitz-dock--open .blitz-dock__bubble { display: none; }
+
+/* Bubble (launcher) */
+.blitz-dock__bubble {
+  width: 60px;
+  height: 60px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--wp-admin-theme-color, #ffffff);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+/* Hover: transparent + ring + slight lift (mouse only, don't override focus) */
+@media (pointer: fine) {
+  .blitz-dock__bubble:hover:not(:focus-visible) {
+    background-color: transparent;
+    box-shadow:
+      inset 0 0 0 1px var(--wp-admin-theme-color, #EF7722),
+      0 2px 6px rgba(0,0,0,.12);
+    transform: translateY(-2px);
+  }
+  .blitz-dock__bubble:active:not(:focus-visible) {
+    transform: translateY(-1px);
+  }
+}
+
+.blitz-dock__bubble-icon {
+  width: 50px;
+  height: 50px;
+  background: url('../icons/public/blitz-dock-chat.png') center/contain no-repeat;
+}
+
+/* Overlay */
+.blitz-dock__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 9998; /* explicit layering */
+}
+
+/* Panel */
+.blitz-dock__panel {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  inline-size: 100%;
+  block-size: min(var(--bd-panel-height), 90vh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* Header */
+.blitz-dock__header {
+  position: relative;
+  block-size: var(--bd-header-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--bd-space-4);
+}
+
+.blitz-dock__title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Close button (its own simple hover, no lift/ring) */
+.blitz-dock__close {
+  border: 0;
+  background: transparent;
+  padding: var(--bd-space-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset-inline-end: var(--bd-space-4);
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color .18s ease, transform .18s ease;
+}
+
+/* Subtle hover for close: light hover plate ONLY, keep transform fixed */
+@media (pointer: fine) {
+  .blitz-dock__close:hover:not(:focus-visible) {
+    background-color: rgba(0,0,0,.06);
+    transform: translateY(-50%); /* prevent lift */
+    box-shadow: none;            /* ensure no ring/shadow */
+    border-radius: 50%;          /* larger hit area feel */
+  }
+  .blitz-dock__close:active:not(:focus-visible) {
+    transform: translateY(-50%) scale(.98); /* tiny press feedback */
+  }
+}
+
+.blitz-dock__close-icon {
+  width: 18px;
+  height: 18px;
+  background: url('../icons/public/close.svg') center/contain no-repeat;
+}
+
+/* Body */
+.blitz-dock__body {
+  padding: var(--bd-space-4);
+  flex: 1 1 auto;
+  min-block-size: calc(var(--bd-panel-height) - var(--bd-header-size));
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+}
+
+/* Prevent background scroll while the panel is open */
+body.blitz-dock-scroll-lock { overflow: hidden; }
+
+.blitz-dock [hidden] { display: none !important; }
+
+/* Bubble on top */
+.blitz-dock__bubble { z-index: 10000; }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .blitz-dock__bubble,
+  .blitz-dock__close,
+  .blitz-dock__panel,
+  .blitz-dock__overlay {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+}
