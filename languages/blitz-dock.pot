@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Blitz Dock package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blitz Dock 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-09 20:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: includes/Admin/MenuPage.php templates/admin/dashboard.php
+msgid "Blitz Dock"
+msgstr ""
+
+#: includes/Admin/MenuPage.php
+msgid "You are not allowed to access this page."
+msgstr ""
+
+#: templates/admin/dashboard.php
+msgid "Skip to Blitz Dock content"
+msgstr ""
+
+#: templates/admin/dashboard.php
+msgid "Blitz Dock sidebar"
+msgstr ""
+
+#: templates/admin/dashboard.php
+msgid "Blitz Dock navigation"
+msgstr ""
+
+#: templates/admin/dashboard.php templates/admin/sections/dashboard.php
+msgid "Dashboard"
+msgstr ""
+
+#: templates/admin/dashboard.php templates/admin/sections/channels.php
+msgid "Channels"
+msgstr ""
+
+#: templates/admin/dashboard.php templates/admin/sections/analytics.php
+msgid "Analytics"
+msgstr ""
+
+#: templates/admin/partials/sidebar.php
+msgid "Sidebar placeholder."
+msgstr ""
+
+#: templates/admin/sections/analytics.php templates/admin/sections/channels.php
+#: templates/admin/sections/dashboard.php
+msgid "Content will appear here."
+msgstr ""
+
+#: templates/public/panel.php
+msgid "Open support panel"
+msgstr ""
+
+#: templates/public/panel.php
+msgid "Blitz Dock CRM Support"
+msgstr ""
+
+#: templates/public/panel.php
+msgid "Close panel"
+msgstr ""
