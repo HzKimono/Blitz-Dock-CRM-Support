@@ -24,6 +24,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class MenuPage {
 
     /**
+     * Allowed admin tab slugs.
+     *
+     * @since 0.1.1
+     */
+    public const TABS = array( 'dashboard', 'channels', 'analytics' );
+
+    /**
      * Hook suffix for the admin page.
      *
      * @since 0.1.0
@@ -40,19 +47,18 @@ class MenuPage {
      * @return string
      */
     public static function get_current_tab_slug() : string {
-        $tab = '';
+        $default = self::TABS[0];
+        $tab     = $default;
 
         if ( isset( $_GET['tab'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only tab switch.
             $tab = \sanitize_key( \wp_unslash( $_GET['tab'] ) );
         }
 
-        $labels = self::get_tab_labels();
-
-        if ( isset( $labels[ $tab ] ) ) {
+        if ( \in_array( $tab, self::TABS, true ) ) {
             return $tab;
         }
 
-        return 'dashboard';
+        return $default;
     }
 
     /**
@@ -63,11 +69,21 @@ class MenuPage {
      * @return array<string, string>
      */
     public static function get_tab_labels() : array {
-        return array(
+         $label_map = array(
             'dashboard' => \__( 'Dashboard', 'blitz-dock' ),
             'channels'  => \__( 'Channels', 'blitz-dock' ),
             'analytics' => \__( 'Analytics', 'blitz-dock' ),
         );
+
+        $labels = array();
+
+        foreach ( self::TABS as $slug ) {
+            if ( isset( $label_map[ $slug ] ) ) {
+                $labels[ $slug ] = $label_map[ $slug ];
+            }
+        }
+
+        return $labels;
     }
 
     /**
@@ -167,15 +183,15 @@ class MenuPage {
         echo '</div>';
     }
 
-    /**
+   /**
      * Get the list of allowed tab slugs.
      *
      * @since 0.1.0
      *
-     * @return array<string> Whitelisted tab slugs.
+     * @return array<int, string> Whitelisted tab slugs.
      */
     private function get_allowed_tabs() : array {
-        return array_keys( self::get_tab_labels() );
+        return self::TABS;
     }
 
     /**

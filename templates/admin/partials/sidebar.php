@@ -11,21 +11,50 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-$tabs = array(
-    'dashboard' => __( 'Dashboard', 'blitz-dock' ),
-    'channels'  => __( 'Channels', 'blitz-dock' ),
-    'analytics' => __( 'Analytics', 'blitz-dock' ),
+$tabs = \BlitzDock\Admin\MenuPage::get_tab_labels();
+
+$active_tab = isset( $active_tab ) ? $active_tab : \BlitzDock\Admin\MenuPage::get_current_tab_slug();
+
+$allowed_svg_tags = array(
+    'span'   => array(
+        'class' => true,
+    ),
+    'svg'    => array(
+        'xmlns'       => true,
+        'viewbox'     => true,
+        'aria-hidden' => true,
+        'focusable'   => true,
+        'class'       => true,
+        'role'        => true,
+    ),
+    'path'   => array(
+        'd' => true,
+    ),
+    'polygon' => array(
+        'points' => true,
+    ),
+    'circle' => array(
+        'cx' => true,
+        'cy' => true,
+        'r'  => true,
+    ),
 );
 ?>
-<nav class="blitz-dock-nav" aria-label="<?php esc_attr_e( 'Blitz Dock navigation', 'blitz-dock' ); ?>">
+<nav class="blitz-dock-nav" aria-label="<?php echo esc_attr( __( 'Blitz Dock navigation', 'blitz-dock' ) ); ?>">
     <ul>
         <?php foreach ( $tabs as $slug => $label ) :
-            $url    = admin_url( 'admin.php?page=' . \BlitzDock\Core\Plugin::SLUG . '&tab=' . $slug );
+            $url    = add_query_arg(
+                array(
+                    'page' => \BlitzDock\Core\Plugin::SLUG,
+                    'tab'  => $slug,
+                ),
+                admin_url( 'admin.php' )
+            );
             $active = ( $slug === $active_tab );
 
             $classes = array( 'blitz-dock__nav-link' );
             if ( $active ) {
-                $classes[] = 'active';
+                $classes[] = 'is-active';
             }
 
             $icon_svg  = '';
@@ -94,11 +123,11 @@ $tabs = array(
                 }
             }
             ?>
-            <li class="blitz-dock__nav-item">
-                <a href="<?php echo esc_url( $url ); ?>" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>"<?php if ( $active ) { echo ' aria-current="page"'; } ?>>
+          <li class="blitz-dock__nav-item">
+                <a href="<?php echo esc_url( $url ); ?>" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>"<?php if ( $active ) : ?> aria-current="<?php echo esc_attr( 'page' ); ?>"<?php endif; ?>>
                     <?php
                     if ( $icon_svg ) {
-                        echo $icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static trusted SVG.
+                        echo wp_kses( $icon_svg, $allowed_svg_tags );
                     }
                     ?>
                     <span class="blitz-dock__label"><?php echo esc_html( $label ); ?></span>
