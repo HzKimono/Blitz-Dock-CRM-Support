@@ -1,0 +1,208 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025 Blitz Dock Contributors
+# This file is distributed under the same license as the Blitz Dock package.
+# Translators: FULL NAME <EMAIL@ADDRESS>
+msgid ""
+msgstr ""
+"Project-Id-Version: Blitz Dock 0.2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-28 12:38+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: includes/Admin/MenuPage.php:133 includes/Admin/MenuPage.php:134
+msgid "Blitz Dock"
+msgstr ""
+
+#: includes/Admin/MenuPage.php:68
+msgid "Dashboard"
+msgstr ""
+
+#: includes/Admin/MenuPage.php:69 templates/public/channels/list.php:22 templates/public/panel.php:56 templates/public/panel.php:63 includes/Channels/PostType.php:71
+msgid "Channels"
+msgstr ""
+
+#: includes/Admin/MenuPage.php:70
+msgid "Analytics"
+msgstr ""
+
+#: includes/Admin/MenuPage.php:151
+msgid "You are not allowed to access this page."
+msgstr ""
+
+#: includes/Admin/MenuPage.php:159
+msgid "Skip to Blitz Dock content"
+msgstr ""
+
+#: includes/Admin/MenuPage.php:164
+msgid "Blitz Dock sidebar"
+msgstr ""
+
+#: includes/Admin/PluginLinks.php:40
+msgid "Settings"
+msgstr ""
+
+#: includes/Channels/Repository.php:49 includes/Channels/Repository.php:108 includes/Channels/Repository.php:149
+msgid "You are not allowed to manage channels."
+msgstr ""
+
+#: includes/Channels/Repository.php:57 includes/Channels/Controller.php:61
+msgid "Invalid channel provider."
+msgstr ""
+
+#: includes/Channels/Repository.php:61 includes/Channels/Controller.php:65
+msgid "Invalid channel status."
+msgstr ""
+
+#: includes/Channels/Repository.php:65 includes/Channels/Repository.php:71 includes/Channels/Controller.php:57
+msgid "Invalid channel URL."
+msgstr ""
+
+#: includes/Channels/Repository.php:116 includes/Channels/Repository.php:156 includes/Channels/Controller.php:73
+msgid "Channel not found."
+msgstr ""
+
+#: includes/Channels/Repository.php:131
+msgid "Unable to update channel status."
+msgstr ""
+
+#: includes/Channels/Repository.php:162 includes/Channels/Controller.php:81
+msgid "Unable to delete the channel."
+msgstr ""
+
+#: includes/Channels/Controller.php:45
+msgid "Channel added successfully."
+msgstr ""
+
+#: includes/Channels/Controller.php:49
+msgid "Channel status updated."
+msgstr ""
+
+#: includes/Channels/Controller.php:53
+msgid "Channel deleted."
+msgstr ""
+
+#: includes/Channels/Controller.php:69 includes/Channels/Controller.php:231
+msgid "You are not allowed to perform this action."
+msgstr ""
+
+#: includes/Channels/Controller.php:85
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: includes/Channels/AdminTable.php:78 includes/Channels/PostType.php:72
+msgid "Channel"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:79
+msgid "Channel Link"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:80
+msgid "Today"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:81
+msgid "Weekly"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:82
+msgid "Monthly"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:83
+msgid "Status"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:84
+msgid "Actions"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:137
+msgid "no data"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:259 templates/admin/channels/index.php:21
+msgid "Active"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:259 templates/admin/channels/index.php:22
+msgid "Disabled"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:282
+msgid "Disable"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:282
+msgid "Activate"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:301
+msgid "Delete"
+msgstr ""
+
+#: includes/Channels/AdminTable.php:245
+msgid "No channels found."
+msgstr ""
+
+#: includes/Channels/Providers.php:29
+msgid "WhatsApp"
+msgstr ""
+
+#: templates/admin/channels/index.php:55
+msgid "Channel provider"
+msgstr ""
+
+#: templates/admin/channels/index.php:68
+msgid "Channel URL"
+msgstr ""
+
+#: templates/admin/channels/index.php:75
+msgid "Channel status"
+msgstr ""
+
+#: templates/admin/channels/index.php:70
+msgid "https://wa.me/12345678901"
+msgstr ""
+
+#: templates/admin/channels/index.php:88
+msgid "Add Channel"
+msgstr ""
+
+#: templates/public/channels/list.php:18
+msgid "No channels available."
+msgstr ""
+
+#: templates/public/panel.php:17
+msgid "Open support panel"
+msgstr ""
+
+#: templates/public/panel.php:31
+msgid "Customer support panel. Use Tab to navigate. Press Escape to close."
+msgstr ""
+
+#: templates/public/panel.php:35
+msgid "Blitz Dock CRM Support"
+msgstr ""
+
+#: templates/public/panel.php:39
+msgid "Close panel"
+msgstr ""
+
+#: templates/public/panel.php:47
+msgid "Welcome to Blitz Dock support"
+msgstr ""
+
+#: templates/public/panel.php:50
+msgid "Choose how you would like to connect with our team."
+msgstr ""
+
+#: templates/public/panel.php:66
+msgid "Back"
+msgstr ""

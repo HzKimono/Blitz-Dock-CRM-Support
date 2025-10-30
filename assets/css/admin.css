@@ -1,0 +1,247 @@
+/* Admin styles for Blitz Dock */
+
+.toplevel_page_blitz-dock #wpcontent,
+.toplevel_page_blitz-dock #wpbody-content {
+    max-width: none;
+}
+
+.toplevel_page_blitz-dock #wpcontent {
+    padding-left: 0;
+}
+
+.toplevel_page_blitz-dock #wpbody-content {
+    padding: 0;
+}
+
+.toplevel_page_blitz-dock {
+    --bd-gap: 30px;
+    --bd-radius: 12px;
+    --bd-pad: 24px;
+    --bd-border: 1px solid rgba(0, 0, 0, 0.06);
+    --bd-max: 1420px;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-wrap {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    max-width: none;
+    min-height: calc(100vh - 32px);
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.toplevel_page_blitz-dock .blitz-dock-sidebar {
+    flex: 0 0 280px;
+    width: 280px;
+    box-sizing: border-box;
+    border: 1px solid #3f37394d;
+    background: #fff;
+    position: sticky;
+    top: 32px;
+    min-height: calc(100vh - 32px);
+}
+
+.toplevel_page_blitz-dock .blitz-dock-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 0;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-header {
+    box-sizing: border-box;
+    height: 65px;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    flex: 0 0 auto;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 16px;
+    gap: 12px;
+    width: 100%;
+    /* allows ellipsis/truncation of children inside a flex container */
+    min-width: 0;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-version {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ef7722;
+    line-height: 1;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-breadcrumb {
+    line-height: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-breadcrumb__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    min-width: 0;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    flex: 0 1 auto;
+    font-size: 13px;
+    color: #50575e;
+    white-space: nowrap;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-breadcrumb__link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--wp-admin-theme-color, #2271b1);
+    text-decoration: none;
+    flex: 0 0 auto;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-breadcrumb__link:hover,
+.toplevel_page_blitz-dock .blitz-dock-breadcrumb__link:focus {
+    color: #1d2327;
+    text-decoration: underline;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-breadcrumb__item + .blitz-dock-breadcrumb__item::before {
+    content: "»";
+    margin-inline: 8px;
+    opacity: 0.7;
+}
+
+:dir(rtl) .toplevel_page_blitz-dock .blitz-dock-breadcrumb__item + .blitz-dock-breadcrumb__item::before {
+    content: "«";
+}
+
+.toplevel_page_blitz-dock .blitz-dock-breadcrumb__item--current {
+    font-weight: 600;
+    color: #1d2327;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 782px) {
+    .toplevel_page_blitz-dock .blitz-dock-header__inner {
+        row-gap: 8px;
+    }
+}
+
+.toplevel_page_blitz-dock .blitz-dock-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* A11y: strong, theme-aware focus ring (works in light/dark schemes) */
+.toplevel_page_blitz-dock a:focus-visible,
+.toplevel_page_blitz-dock button:focus-visible,
+.toplevel_page_blitz-dock [role="tab"]:focus-visible,
+.toplevel_page_blitz-dock [tabindex]:focus-visible {
+    outline: 2px solid var(--wp-admin-theme-color, #2271b1);
+    outline-offset: 2px;
+}
+
+/* Safari fallback */
+.toplevel_page_blitz-dock a:focus,
+.toplevel_page_blitz-dock button:focus,
+.toplevel_page_blitz-dock [role="tab"]:focus,
+.toplevel_page_blitz-dock [tabindex]:focus {
+    outline: 2px solid var(--wp-admin-theme-color, #2271b1);
+    outline-offset: 2px;
+}
+
+/* Blitz Dock admin nav (scoped) */
+.toplevel_page_blitz-dock .blitz-dock-nav a,
+.toplevel_page_blitz-dock .blitz-dock__nav-link{
+  display:flex;
+  align-items:center;
+  width:100%;
+  box-sizing:border-box;
+  min-height:30px;
+  gap:1px;
+  padding:10px 15px;
+  text-decoration:none;
+  line-height:1.2;
+  font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size:13px;
+  font-weight:600;
+  color:#3c434a;
+  transition:color .2s ease-in-out;
+}
+.toplevel_page_blitz-dock .blitz-dock-nav a:hover,
+.toplevel_page_blitz-dock .blitz-dock__nav-link:hover{
+  background:rgba(0,0,0,.04);
+  border-radius:5px;
+  color:#EF7722;
+}
+.toplevel_page_blitz-dock .blitz-dock-nav a.is-active,
+.toplevel_page_blitz-dock .blitz-dock-nav a[aria-current="page"],
+.toplevel_page_blitz-dock .blitz-dock__nav-link.is-active,
+.toplevel_page_blitz-dock .blitz-dock__nav-link[aria-current="page"]{
+  box-shadow:inset 3px 0 0 var(--wp-admin-theme-color,#EF7722);
+  background:rgba(0,0,0,.08);
+  color:#EF7722;
+  border-radius:2px;
+}
+@media (prefers-reduced-motion: reduce){
+  .toplevel_page_blitz-dock .blitz-dock-nav a,
+  .toplevel_page_blitz-dock .blitz-dock__nav-link{transition:none;}
+}
+/* 18px outline-only icons (inherit link color) */
+.toplevel_page_blitz-dock .blitz-dock-icon,
+.toplevel_page_blitz-dock .blitz-dock__icon{inline-size:18px;block-size:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-inline-end:8px;line-height:0;}
+.toplevel_page_blitz-dock .blitz-dock-icon svg,
+.toplevel_page_blitz-dock .blitz-dock__icon svg{width:18px;height:18px;}
+.toplevel_page_blitz-dock .blitz-dock-icon,
+.toplevel_page_blitz-dock .blitz-dock-icon *,
+.toplevel_page_blitz-dock .blitz-dock__icon,
+.toplevel_page_blitz-dock .blitz-dock__icon *{fill:none;stroke:currentColor;stroke-width:2;}
+/* Blitz Dock admin container layout */
+.toplevel_page_blitz-dock .blitz-dock-admin__container {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    max-width: var(--bd-max);
+    margin-block-start: var(--bd-gap);
+    margin-inline: 0;
+    background: #fff;
+    border: var(--bd-border);
+    border-radius: var(--bd-radius);
+    overflow: visible;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-admin__container-inner {
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--bd-pad);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .toplevel_page_blitz-dock .blitz-dock-admin__container,
+    .toplevel_page_blitz-dock .blitz-dock-admin__container * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

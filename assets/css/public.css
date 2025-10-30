@@ -1,0 +1,537 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/poppins/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/poppins/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Root variables */
+#blitz-dock-root {
+  --bd-panel-width: 380px;
+  --bd-panel-height: 700px;
+  --bd-header-size: 60px;
+  --bd-subhead-size: 80px;
+  font-family: var(--bd-font-family);
+}
+
+#blitz-dock-root * {
+  font-family: inherit;
+}
+
+#blitz-dock-root button,
+#blitz-dock-root input,
+#blitz-dock-root select,
+#blitz-dock-root textarea {
+  font: inherit;
+}
+
+#blitz-dock-root code,
+#blitz-dock-root kbd,
+#blitz-dock-root pre,
+#blitz-dock-root samp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+:where(.blitz-dock) {
+   --bd-bubble-size: var(--bd-header-size);
+  --bd-radius-panel: 16px;
+  --bd-radius-button: 10px;
+  --bd-radius-icon: 50%;
+  --bd-space-1: 4px;
+  --bd-space-2: 8px;
+  --bd-space-3: 12px;
+  --bd-space-4: 16px;
+  --bd-space-6: 24px;
+  --bd-focus-ring: currentColor;
+  --bd-outline-width: 2px;
+  --bd-outline-offset: 2px;
+  --bd-outline-offset-large: 3px;
+  --bd-overlay-background: rgba(0, 0, 0, 0.4);
+  --bd-panel-background: #fff;
+  --bd-button-background: #e1e1e1;
+  --bd-button-background-hover: #ef7722;
+  --bd-surface-hover: #f3f4f6;
+  --bd-button-color: #111111;
+  --bd-icon-size-lg: 50px;
+  --bd-icon-size-md: 18px;
+  --bd-nav-width: 320px;
+  --bd-fs-body: 14px;
+  --bd-fs-title: 16px;
+  --bd-fs-section: 18px;
+  --bd-fs-button: 14px;
+  --bd-fs-small: 12px;
+  --bd-fw-regular: 400;
+  --bd-fw-semibold: 600;
+  --bd-lh-tight: 1.2;
+  --bd-lh-normal: 1.4;
+  --bd-font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+  --bd-transition-duration: 0.18s;
+  --bd-transition-fast: 0.2s;
+  --bd-transition-micro: 0.05s;
+  --bd-bubble-hover-translate: -2px;
+  --bd-bubble-active-translate: -1px;
+  --bd-press-scale: 0.98;
+  --bd-press-brightness: 0.98;
+  --bd-button-height: 40px;
+  --bd-font-size-heading-sm: 13px;
+  --bd-font-size-body-xs: 10px;
+  --bd-shadow-panel: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --bd-z-root: 9999;
+  --bd-z-overlay: 9998;
+  --bd-z-bubble: 10000;
+
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  inline-size: min(var(--bd-panel-width), 95vw);
+  inset-block-end: var(--bd-space-4);
+  inset-inline-end: var(--bd-space-4);
+  position: fixed;
+  z-index: var(--bd-z-root);
+}
+
+:where(.blitz-dock),
+:where(.blitz-dock *) {
+  box-sizing: border-box;
+}
+
+.blitz-dock--hidden {
+  display: none;
+}
+
+.blitz-dock--open .blitz-dock__bubble {
+  display: none;
+}
+
+.blitz-dock__bubble {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--bd-radius-icon);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  block-size: var(--bd-bubble-size);
+  inline-size: var(--bd-bubble-size);
+  justify-content: center;
+  margin: 0;
+  min-block-size: var(--bd-bubble-size);
+  min-inline-size: var(--bd-bubble-size);
+  padding: 0;
+  transition: background-color var(--bd-transition-duration) ease, box-shadow var(--bd-transition-duration) ease, transform var(--bd-transition-duration) ease;
+  -webkit-tap-highlight-color: transparent;
+  z-index: var(--bd-z-bubble);
+}
+
+.blitz-dock__bubble:focus-visible {
+  background-color: transparent;
+  outline: var(--bd-outline-width) solid var(--bd-focus-ring);
+  outline-offset: var(--bd-outline-offset-large);
+}
+
+.blitz-dock__bubble:active {
+  background-color: transparent;
+}
+
+@media (pointer: fine) {
+  .blitz-dock__bubble:hover:not(:focus-visible) {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px var(--wp-admin-theme-color, #ef7722), 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(var(--bd-bubble-hover-translate));
+  }
+
+  .blitz-dock__bubble:active:not(:focus-visible) {
+    background-color: transparent;
+    transform: translateY(var(--bd-bubble-active-translate));
+  }
+}
+
+.blitz-dock__bubble-icon {
+  background: url('../icons/public/blitz-dock-chat.png') center/contain no-repeat;
+  background-color: transparent;
+  block-size: var(--bd-icon-size-lg);
+  inline-size: var(--bd-icon-size-lg);
+}
+
+.blitz-dock__overlay {
+  background: var(--bd-overlay-background);
+  inset: 0;
+  position: fixed;
+  z-index: var(--bd-z-overlay);
+}
+
+/* Panel layout */
+#blitz-dock-root .blitz-dock__panel {
+  background: var(--bd-panel-background);
+  block-size: var(--bd-panel-height);
+  border-radius: var(--bd-radius-panel);
+  box-shadow: var(--bd-shadow-panel);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  inline-size: var(--bd-panel-width);
+  overflow: hidden;
+  z-index: var(--bd-z-root);
+}
+
+#blitz-dock-root .blitz-dock__header {
+  align-items: center;
+  block-size: var(--bd-header-size);
+  display: flex;
+  flex: 0 0 var(--bd-header-size);
+  justify-content: flex-start;
+  min-block-size: var(--bd-header-size);
+  padding-inline: 16px;
+  position: relative;
+}
+
+/* Subheader */
+#blitz-dock-root .blitz-dock__subhead {
+  background: #fff;
+  block-size: var(--bd-subhead-size);
+  border-block-end: 1px solid #EF7722;
+  box-sizing: border-box;
+  flex: 0 0 var(--bd-subhead-size);
+  inline-size: var(--bd-panel-width);
+}
+
+/* Subheader content layout */
+#blitz-dock-root .bd-subhead {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-block: 12px;
+  padding-inline: 16px;
+  inline-size: 100%;
+  block-size: 100%;
+  text-align: start;
+}
+
+/* Row 1: Local Time */
+#blitz-dock-root .bd-subhead__time {
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #EF7722;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+/* Row 2: Description */
+#blitz-dock-root .bd-subhead__note {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #111111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  max-inline-size: 100%;
+}
+
+.blitz-dock__title {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#blitz-dock-root #blitz-dock_title.blitz-dock__title,
+#blitz-dock-root #blitz-dock-title.blitz-dock__title {
+  align-items: center;
+  color: #111;
+  display: inline-flex;
+  font-size: var(--bd-fs-title);
+  font-weight: var(--bd-fw-semibold);
+  gap: 8px;
+  line-height: var(--bd-lh-tight);
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#blitz-dock-root #blitz-dock_title.blitz-dock__title::after,
+#blitz-dock-root #blitz-dock-title.blitz-dock__title::after {
+  background: url("../icons/public/prints-blitz.png") center/contain no-repeat;
+  block-size: 20px;
+  content: "";
+  flex: 0 0 20px;
+  inline-size: 20px;
+  pointer-events: none;
+}
+
+.blitz-dock__close {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--bd-radius-icon);
+  cursor: pointer;
+  display: inline-flex;
+  inset-block-start: 50%;
+  inset-inline-end: var(--bd-space-4);
+  justify-content: center;
+  padding: var(--bd-space-2);
+  position: absolute;
+  transform: translateY(-50%);
+  transition: background-color var(--bd-transition-duration) ease, transform var(--bd-transition-duration) ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.blitz-dock__close:focus-visible {
+  outline: var(--bd-outline-width) solid var(--bd-focus-ring);
+  outline-offset: var(--bd-outline-offset);
+}
+
+@media (pointer: fine) {
+  .blitz-dock__close:hover:not(:focus-visible) {
+    background-color: rgba(0, 0, 0, 0.06);
+    transform: translateY(-50%);
+  }
+
+  .blitz-dock__close:active:not(:focus-visible) {
+    transform: translateY(-50%) scale(var(--bd-press-scale));
+  }
+}
+
+.blitz-dock__close-icon {
+  background: url('../icons/public/close.svg') center/contain no-repeat;
+  block-size: var(--bd-icon-size-md);
+  inline-size: var(--bd-icon-size-md);
+}
+
+/* Body fills remaining space */
+#blitz-dock-root .blitz-dock__body {
+  flex: 1 1 auto;
+  min-block-size: calc(var(--bd-panel-height) - var(--bd-header-size) - var(--bd-subhead-size));
+  overflow: auto;
+  padding: var(--bd-space-4);
+  scrollbar-gutter: stable both-edges;
+}
+
+.blitz-dock .blitz-dock-channels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.blitz-dock .blitz-dock-channels__item {
+  align-items: center;
+  display: flex;
+  padding-block: var(--bd-space-2);
+}
+
+.blitz-dock .blitz-dock-channels__link {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  gap: var(--bd-space-3);
+  inline-size: 100%;
+  text-decoration: none;
+}
+
+.blitz-dock .blitz-dock-channels__icon {
+  block-size: 24px;
+  flex: 0 0 24px;
+  inline-size: 24px;
+  object-fit: contain;
+}
+
+.blitz-dock .blitz-dock-channels__label {
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blitz-dock .blitz-dock-channels__link:focus-visible {
+  outline: 2px solid var(--bd-focus-ring);
+  outline-offset: 3px;
+}
+
+[dir="rtl"] .blitz-dock .blitz-dock-channels__link {
+  flex-direction: row-reverse;
+}
+
+#blitz-dock-root .blitz-dock__conversation-start {
+  display: flex;
+  align-items: center;
+  block-size: 80px;
+  padding-inline: 16px;
+  border-radius: 12px;
+  cursor: default;
+}
+
+@media (hover:hover) {
+  #blitz-dock-root .blitz-dock__conversation-start:hover {
+    background-color: var(--bd-surface-hover);
+  }
+}
+
+#blitz-dock-root .blitz-dock__conversation-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  inline-size: 100%;
+}
+
+#blitz-dock-root .blitz-dock__conversation-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: var(--bd-fs-title);
+  font-weight: var(--bd-fw-semibold);
+  line-height: var(--bd-lh-tight);
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#blitz-dock-root .blitz-dock__started-time {
+  white-space: nowrap;
+}
+
+#blitz-dock-root .blitz-dock__started-date {
+  opacity: .65;
+  font-weight: var(--bd-fw-regular);
+}
+
+#blitz-dock-root .blitz-dock__conversation-desc {
+  font-size: var(--bd-fs-body);
+  font-weight: var(--bd-fw-regular);
+  line-height: var(--bd-lh-normal);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-inline-size: 100%;
+}
+
+#blitz-dock-root .blitz-dock__home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bd-space-3);
+}
+
+.blitz-dock__channels-header {
+  align-items: center;
+  display: flex;
+  gap: var(--bd-space-3);
+  justify-content: space-between;
+  margin: 0;
+}
+
+#blitz-dock-root .blitz-dock__channels-title {
+  font-size: var(--bd-fs-section);
+  font-weight: var(--bd-fw-semibold);
+  line-height: var(--bd-lh-tight);
+  margin: 0;
+}
+
+.blitz-dock__button {
+  align-items: center;
+  background: var(--bd-button-background);
+  border: 0;
+  border-radius: var(--bd-radius-button);
+  color: var(--bd-button-color);
+  cursor: pointer;
+  display: inline-flex;
+  block-size: var(--bd-button-height);
+  justify-content: center;
+  max-inline-size: 100%;
+  overflow: hidden;
+  padding-inline: var(--bd-space-4);
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition: background-color var(--bd-transition-fast) ease, filter var(--bd-transition-micro) ease;
+  white-space: nowrap;
+}
+
+#blitz-dock-root .blitz-dock__button {
+  font-size: var(--bd-fs-button);
+  font-weight: var(--bd-fw-semibold);
+  line-height: var(--bd-lh-tight);
+}
+
+#blitz-dock-root .blitz-dock__label,
+#blitz-dock-root .blitz-dock__text,
+#blitz-dock-root .blitz-dock__desc {
+  font-size: var(--bd-fs-body);
+  font-weight: var(--bd-fw-regular);
+  line-height: var(--bd-lh-normal);
+}
+
+.blitz-dock__button:hover,
+.blitz-dock__button:focus-visible {
+  background: var(--bd-button-background-hover);
+  color: var(--bd-button-color);
+}
+
+.blitz-dock__button:focus-visible {
+  outline: var(--bd-outline-width) solid var(--bd-focus-ring);
+  outline-offset: var(--bd-outline-offset);
+}
+
+.blitz-dock__button:active {
+  filter: brightness(var(--bd-press-brightness));
+  transform: translateY(0);
+}
+
+.blitz-dock__button[aria-disabled='true'],
+.blitz-dock__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.blitz-dock__nav-button {
+  align-self: flex-start;
+  inline-size: var(--bd-nav-width);
+  max-inline-size: 100%;
+}
+
+body.blitz-dock-scroll-lock {
+  overflow: hidden;
+}
+
+.blitz-dock [hidden] {
+  display: none !important;
+}
+
+.blitz-dock-visually-hidden {
+  block-size: 1px !important;
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  inline-size: 1px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blitz-dock__bubble,
+  .blitz-dock__close,
+  .blitz-dock__panel,
+  .blitz-dock__overlay {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}

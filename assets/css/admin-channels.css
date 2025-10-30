@@ -1,0 +1,166 @@
+/* Channel admin styles */
+
+.toplevel_page_blitz-dock .blitz-dock-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channels__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channels__form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channels__form-row input[type="url"] {
+    min-width: 280px;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channels__select {
+    min-width: 160px;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channels__table .wp-list-table th,
+.toplevel_page_blitz-dock .blitz-dock-channels__table .wp-list-table td {
+    vertical-align: middle;
+}
+
+.toplevel_page_blitz-dock table.blitz-dock-channels__table thead th.manage-column {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ef7722;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channel-name {
+    font-weight: 600;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channel-placeholder {
+    display: inline-flex;
+    min-width: 24px;
+    justify-content: center;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channel-status-text {
+    font-weight: 600;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle__form {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle {
+    position: relative;
+    display: inline-flex;
+    width: 36px;
+    height: 20px;
+    align-items: center;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle__input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle__track {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    border-radius: 999px;
+    background-color: #8c8f94;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle__thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle.is-off .blitz-dock-toggle__thumb {
+    transform: translateX(0);
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle.is-on .blitz-dock-toggle__track {
+    background-color: #007cba;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle.is-on .blitz-dock-toggle__thumb {
+    transform: translateX(16px);
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle__input:focus-visible + .blitz-dock-toggle__track {
+    outline: none;
+    box-shadow: 0 0 0 2px #f0f0f1, 0 0 0 4px #1d2327;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-toggle__submit {
+    margin: 0;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channel-actions {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channel-actions__form {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channel-actions__form .button-link {
+    padding: 0;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channel-actions__form--delete .button-link.delete {
+    color: #b32d2e;
+}
+
+.toplevel_page_blitz-dock .blitz-dock-channels__table tfoot {
+    display: none;
+}
+
+/* Hide WP_List_Table toggle button on desktop. Keep on small screens. */
+.toplevel_page_blitz-dock .blitz-dock-channels__table .column-primary .toggle-row {
+    display: none !important;
+}
+
+@media (max-width: 782px) {
+    .toplevel_page_blitz-dock .blitz-dock-channels__table .column-primary .toggle-row {
+        display: inline-block;
+        background: transparent;
+        padding: 0;
+    }
+}
