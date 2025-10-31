@@ -57,12 +57,10 @@
   --bd-outline-offset-large: 3px;
   --bd-overlay-background: rgba(0, 0, 0, 0.4);
   --bd-panel-background: #fff;
-  --bd-button-background: #e1e1e1;
-  --bd-button-background-hover: #ef7722;
   --bd-surface-hover: #f3f4f6;
   --bd-button-color: #111111;
   --bd-icon-size-lg: 50px;
-  --bd-icon-size-md: 18px;
+  --bd-icon-size-md: 14px;
   --bd-nav-width: 320px;
   --bd-fs-body: 14px;
   --bd-fs-title: 16px;
@@ -70,7 +68,7 @@
   --bd-fs-button: 14px;
   --bd-fs-small: 12px;
   --bd-fw-regular: 400;
-  --bd-fw-semibold: 600;
+  --bd-fw-semibold: 500;
   --bd-lh-tight: 1.2;
   --bd-lh-normal: 1.4;
   --bd-font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
@@ -97,6 +95,15 @@
   inset-inline-end: var(--bd-space-4);
   position: fixed;
   z-index: var(--bd-z-root);
+}
+
+#blitz-dock-root .blitz-dock {
+  --bd-accent: #ff751f;
+  --bd-button-border: var(--bd-accent);
+  --bd-button-border-width: 2px;
+  --bd-button-radius: 18px;
+  --bd-button-background: transparent;
+  --bd-button-background-hover: #d9d9d9;
 }
 
 :where(.blitz-dock),
@@ -405,7 +412,8 @@
   padding-inline: var(--bd-space-4);
   text-decoration: none;
   text-overflow: ellipsis;
-  transition: background-color var(--bd-transition-fast) ease, filter var(--bd-transition-micro) ease;
+  transition: background-color var(--bd-transition-fast) ease,
+    filter var(--bd-transition-micro) ease;
   white-space: nowrap;
 }
 
@@ -413,6 +421,39 @@
   font-size: var(--bd-fs-button);
   font-weight: var(--bd-fw-semibold);
   line-height: var(--bd-lh-tight);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #blitz-dock-root .blitz-dock__button {
+    transition: none;
+  }
+}
+
+#blitz-dock-root .blitz-dock__button.blitz-dock__nav-button {
+  background: var(--bd-button-background);
+  border: var(--bd-button-border-width, 1px) solid
+    var(--bd-button-border, #ff751f);
+  border-radius: var(--bd-button-radius, 18px);
+  color: inherit;
+}
+
+#blitz-dock-root .blitz-dock__button.blitz-dock__nav-button:hover {
+  background: var(--bd-button-background-hover, #d9d9d9);
+  box-shadow: none;
+}
+
+#blitz-dock-root .blitz-dock__button.blitz-dock__nav-button:focus-visible {
+  background: var(--bd-button-background-hover, #d9d9d9);
+  box-shadow: none;
+  outline: 2px solid var(--bd-focus-ring);
+  outline-offset: 2px;
+}
+
+#blitz-dock-root .blitz-dock__button.blitz-dock__nav-button[aria-disabled='true'],
+#blitz-dock-root .blitz-dock__button.blitz-dock__nav-button:disabled {
+  background: var(--bd-button-background);
+  border-color: var(--bd-button-border, #ff751f);
+  color: inherit;
 }
 
 #blitz-dock-root .blitz-dock__label,
