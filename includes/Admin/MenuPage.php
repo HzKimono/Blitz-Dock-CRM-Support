@@ -19,11 +19,44 @@ if ( ! defined( 'ABSPATH' ) ) {
 class MenuPage {
 
 	/**
-	 * Allowed admin tab slugs.
+	 * Default admin tab slug.
 	 *
-	 * @since 0.1.1
+	 * @since 0.5.0
 	 */
-	public const TABS = array( 'dashboard', 'channels', 'analytics' );
+    protected const DEFAULT_TAB = 'dashboard';
+
+	/**
+	 * Retrieve the registered admin tabs configuration.
+	 *
+	 * @since 0.5.0
+	 *
+	 * @return array<string, array<string, string>> Tab configuration map.
+	 */
+	public static function get_tabs_map() : array {
+		return array(
+			'dashboard' => array(
+				'label' => __( 'Dashboard', 'blitz-dock' ),
+				'icon'  => 'blitz-dock-dashboard.svg',
+				'cap'   => 'manage_options',
+			),
+			'channels'  => array(
+				'label' => __( 'Channels', 'blitz-dock' ),
+				'icon'  => 'blitz-dock-channels.svg',
+				'cap'   => 'manage_options',
+			),
+			'analytics' => array(
+				'label' => __( 'Analytics', 'blitz-dock' ),
+				'icon'  => 'blitz-dock-analytics.svg',
+				'cap'   => 'manage_options',
+			),
+			'faq'       => array(
+				'label' => __( 'Frequently Asked Questions', 'blitz-dock' ),
+				'icon'  => 'blitz-dock-faq.svg',
+				'cap'   => 'manage_options',
+			),
+		);
+	}
+
 
 	/**
 	 * Stored hook suffix for the admin page.
@@ -42,14 +75,15 @@ class MenuPage {
 	 * @return string Tab slug.
 	 */
 	public static function get_current_tab_slug() : string {
-		$default = self::TABS[0];
-		$tab     = $default;
+		$allowed_tabs = self::get_accessible_tab_slugs();
+		$default      = in_array( self::DEFAULT_TAB, $allowed_tabs, true ) ? self::DEFAULT_TAB : ( $allowed_tabs[0] ?? self::DEFAULT_TAB );
+		$tab          = $default;
 
 		if ( isset( $_GET['tab'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only context.
 			$tab = sanitize_key( wp_unslash( $_GET['tab'] ) );
 		}
 
-		if ( in_array( $tab, self::TABS, true ) ) {
+		if ( in_array( $tab, $allowed_tabs, true ) ) {
 			return $tab;
 		}
 
@@ -64,18 +98,12 @@ class MenuPage {
 	 * @return array<string, string> Tab => label map.
 	 */
 	public static function get_tab_labels() : array {
-		$label_map = array(
-			'dashboard' => __( 'Dashboard', 'blitz-dock' ),
-			'channels'  => __( 'Channels', 'blitz-dock' ),
-			'analytics' => __( 'Analytics', 'blitz-dock' ),
-		);
-
 		$labels = array();
 
-		foreach ( self::TABS as $slug ) {
-			if ( isset( $label_map[ $slug ] ) ) {
-				$labels[ $slug ] = $label_map[ $slug ];
-			}
+		foreach ( self::get_tabs_map() as $slug => $config ) {
+			if ( isset( $config['label'] ) ) {
+				$labels[ $slug ] = $config['label'];
+		}
 		}
 
 		return $labels;
@@ -172,6 +200,11 @@ class MenuPage {
 		echo '<main id="blitz-dock-main" class="blitz-dock-content" role="main" tabindex="-1">';
 
 		$section = Plugin::PATH . 'templates/admin/sections/' . $active_tab . '.php';
+
+		if ( 'faq' === $active_tab ) {
+			$section = Plugin::PATH . 'templates/admin/faq.php';
+		}
+
 		if ( in_array( $active_tab, $allowed, true ) && is_readable( $section ) ) {
 			load_template( $section, true, array( 'active_tab' => $active_tab ) );
 		} else {
@@ -190,8 +223,34 @@ class MenuPage {
 	 * @return array<int, string> Allowed tabs.
 	 */
 	private function get_allowed_tabs() : array {
-		return self::TABS;
+		return self::get_accessible_tab_slugs();
 	}
+
+	/**
+	 * Retrieve accessible tab slugs for the current user.
+	 *
+	 * @since 0.5.0
+	 *
+	 * @return array<int, string> Accessible tab slugs.
+	 */
+	protected static function get_accessible_tab_slugs() : array {
+		$allowed = array();
+
+		foreach ( self::get_tabs_map() as $slug => $config ) {
+			$capability = isset( $config['cap'] ) ? $config['cap'] : 'manage_options';
+
+			if ( current_user_can( $capability ) ) {
+				$allowed[] = $slug;
+			}
+		}
+
+		if ( empty( $allowed ) ) {
+			$allowed[] = self::DEFAULT_TAB;
+		}
+
+		return array_values( array_unique( $allowed ) );
+	}
+
 
 	/**
 	 * Retrieve the registered hook suffix.
