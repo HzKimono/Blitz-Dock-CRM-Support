@@ -69,7 +69,7 @@
 
         try {
             el.focus( { preventScroll: true } );
-        } catch ( error ) {
+        } catch ( _error ) {
             el.focus();
         }
     }
@@ -122,7 +122,7 @@
      *
      * @return {void}
      */
-       function initChannelIconFallback() {
+           function initChannelIconFallback() {
         var dockRoot = document.querySelector( '.blitz-dock' );
 
         if ( ! dockRoot ) {
@@ -178,119 +178,14 @@
                 img.setAttribute( 'data-fallback-applied', '1' );
 
                 img.src = u.toString();
-            } catch ( error ) {
+            } catch ( _error ) {
                 // Ignore malformed URLs and continue.
             }
         }, true );
     }
 
-    /**
-     * Initialize the conversation start card metadata.
-     *
-     * @return {void}
-     */
-    function initConversationStartCard() {
-        var card = document.getElementById( 'blitz-dock-convo-start' );
-
-        if ( ! card ) {
-            return;
-        }
-
-        var lsKey = 'bd_started_at';
-        var dataset = card.dataset || {};
-        var started = dataset.startedAt || card.getAttribute( 'data-started-at' ) || null;
-
-        if ( ! started ) {
-            try {
-                if ( window.localStorage ) {
-                    started = window.localStorage.getItem( lsKey );
-                }
-            } catch ( error ) {
-                started = null;
-            }
-        }
-
-        if ( ! started ) {
-            started = new Date().toISOString();
-
-            try {
-                if ( window.localStorage ) {
-                    window.localStorage.setItem( lsKey, started );
-                }
-            } catch ( error ) {
-                // Ignore storage errors.
-            }
-        }
-
-        var dt = new Date( started );
-
-        if ( isNaN( dt.getTime() ) ) {
-            dt = new Date();
-        }
-
-        var docEl = document.documentElement || null;
-        var lang = docEl && docEl.lang ? docEl.lang : 'en';
-        var timeFormatter;
-        var dateFormatter;
-
-        if ( window.Intl && typeof window.Intl.DateTimeFormat === 'function' ) {
-            try {
-                timeFormatter = new window.Intl.DateTimeFormat( lang, {
-                    hour: 'numeric',
-                    minute: '2-digit',
-                } );
-            } catch ( error ) {
-                timeFormatter = new window.Intl.DateTimeFormat( 'en', {
-                    hour: 'numeric',
-                    minute: '2-digit',
-                } );
-            }
-
-            try {
-                dateFormatter = new window.Intl.DateTimeFormat( lang, {
-                    month: 'short',
-                    day: 'numeric',
-                } );
-            } catch ( error ) {
-                dateFormatter = new window.Intl.DateTimeFormat( 'en', {
-                    month: 'short',
-                    day: 'numeric',
-                } );
-            }
-        }
-
-        var timeEl = card.querySelector( '.blitz-dock__started-time' );
-        var dateEl = card.querySelector( '.blitz-dock__started-date' );
-        var descEl = card.querySelector( '.blitz-dock__conversation-desc' );
-
-        if ( timeEl ) {
-            var label = 'Started ';
-
-            if ( timeFormatter && dateFormatter ) {
-                label += dateFormatter.format( dt ) + ' at ' + timeFormatter.format( dt );
-            } else {
-                label += dt.toLocaleDateString() + ' at ' + dt.toLocaleTimeString();
-            }
-
-            timeEl.textContent = label;
-            timeEl.setAttribute( 'datetime', dt.toISOString() );
-        }
-
-        if ( dateEl ) {
-            dateEl.textContent = '';
-        }
-
-        var agent = dataset.agent || card.getAttribute( 'data-agent' ) || 'Blitz Dock';
-
-        if ( descEl ) {
-            descEl.textContent = agent + ' (AI agent): Ask me a question, choose an option below, or connect with our team.';
-        }
-    }
-
-    document.addEventListener( 'DOMContentLoaded', function onReady() {
+     document.addEventListener( 'DOMContentLoaded', function onReady() {
         var root = document.querySelector( '[data-bd-root]' );
-
-        initConversationStartCard();
 
         if ( ! root ) {
             return;

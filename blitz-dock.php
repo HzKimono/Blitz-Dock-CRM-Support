@@ -8,7 +8,7 @@
  * Plugin Name:       Blitz Dock
  * Plugin URI:        https://github.com/blitz-dock/blitz-dock
  * Description:       Adds the Blitz Dock admin interface and public support panel.
- * Version:           0.2.0
+ * Version:           0.2.2
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Tested up to:      6.6
@@ -30,7 +30,7 @@ define( 'BLITZ_DOCK_URL', plugin_dir_url( BLITZ_DOCK_FILE ) );
 
 if ( ! defined( 'BLITZ_DOCK_VERSION' ) ) {
 	$plugin_data = get_file_data( __FILE__, array( 'Version' => 'Version' ) );
-	$version     = isset( $plugin_data['Version'] ) && '' !== $plugin_data['Version'] ? $plugin_data['Version'] : '0.2.0';
+    $version     = isset( $plugin_data['Version'] ) && '' !== $plugin_data['Version'] ? $plugin_data['Version'] : '0.2.2';
 
 	define( 'BLITZ_DOCK_VERSION', $version );
 }

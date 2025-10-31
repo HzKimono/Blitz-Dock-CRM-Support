@@ -367,65 +367,12 @@
   flex-direction: row-reverse;
 }
 
-#blitz-dock-root .blitz-dock__conversation-start {
-  display: flex;
-  align-items: center;
-  block-size: 80px;
-  padding-inline: 16px;
-  border-radius: 12px;
-  cursor: default;
-}
-
-@media (hover:hover) {
-  #blitz-dock-root .blitz-dock__conversation-start:hover {
-    background-color: var(--bd-surface-hover);
-  }
-}
-
-#blitz-dock-root .blitz-dock__conversation-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  inline-size: 100%;
-}
-
-#blitz-dock-root .blitz-dock__conversation-title {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  font-size: var(--bd-fs-title);
-  font-weight: var(--bd-fw-semibold);
-  line-height: var(--bd-lh-tight);
-  color: #111;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-#blitz-dock-root .blitz-dock__started-time {
-  white-space: nowrap;
-}
-
-#blitz-dock-root .blitz-dock__started-date {
-  opacity: .65;
-  font-weight: var(--bd-fw-regular);
-}
-
-#blitz-dock-root .blitz-dock__conversation-desc {
-  font-size: var(--bd-fs-body);
-  font-weight: var(--bd-fw-regular);
-  line-height: var(--bd-lh-normal);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  max-inline-size: 100%;
-}
-
 #blitz-dock-root .blitz-dock__home {
   display: flex;
   flex-direction: column;
-  gap: var(--bd-space-3);
+  gap: var(--bd-space-2);
+  margin-block-start: 0;
+  padding-block-start: 0;
 }
 
 .blitz-dock__channels-header {

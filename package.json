@@ -2,13 +2,18 @@
   "name": "blitz-dock",
   "private": true,
   "version": "0.0.0",
-  "scripts": {
+   "scripts": {
     "build:js": "esbuild assets/js/public.js --minify --outfile=assets/js/public.min.js --target=es2019 --legal-comments=none",
     "build:css": "csso assets/css/public.css --output assets/css/public.min.css",
-    "build": "npm run build:js && npm run build:css"
+    "build": "npm run build:js && npm run build:css",
+    "lint:js": "eslint \"assets/js/**/*.js\"",
+    "lint:css": "node tools/lint-css.mjs",
+    "lint": "npm run lint:js && npm run lint:css",
+    "test": "node tools/run-tests.mjs"
   },
   "devDependencies": {
     "csso": "^5.0.5",
-    "esbuild": "^0.20.2"
+    "esbuild": "^0.20.2",
+    "eslint": "^9.13.0"
   }
 }
